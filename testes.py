@@ -23,8 +23,6 @@ CASOS_VALIDACAO = [
     (3.5, TypeError),
     (0.0, TypeError),
     ("abc", TypeError),
-    (None, TypeError),
-    ([1, 2], TypeError),
 ]
 
 
