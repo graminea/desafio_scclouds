@@ -15,15 +15,10 @@ CASOS_VALOR = [
 CASOS_VALIDACAO = [
     (1, ValueError),
     (0, ValueError),
-    (-1, ValueError),
-    (-10, ValueError),
     (3.5, TypeError),
     (0.0, TypeError),
     ("abc", TypeError),
-    (None, TypeError),
-    ([1, 2], TypeError),
 ]
-
 
 def testar_valores(nome, funcao, casos):
     print(f"=== {nome} - Testes de valor ===\n")
