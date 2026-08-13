@@ -33,7 +33,13 @@ def testar_valores(nome, funcao, casos):
     passou = 0
     falhou = 0
     for entrada, esperado in casos:
-        resultado = funcao(entrada)
+        try:
+            resultado = funcao(entrada)
+        except Exception as e:
+            print(f"  [FAIL] fib({entrada}) levantou {type(e).__name__}: {e}  (esperado {esperado})")
+            falhou += 1
+            continue
+
         if resultado == esperado:
             print(f"  [PASS] fib({entrada}) = {resultado}")
             passou += 1
@@ -41,6 +47,7 @@ def testar_valores(nome, funcao, casos):
             print(f"  [FAIL] fib({entrada}) = {resultado}  (esperado {esperado})")
             falhou += 1
     print(f"\n  Resultado: {passou} passou, {falhou} falhou\n")
+    return passou, falhou
 
 
 def testar_validacao(nome, funcao, casos):
@@ -60,9 +67,19 @@ def testar_validacao(nome, funcao, casos):
                 print(f"  [FAIL] fib({entrada!r}) -> {type(e).__name__}  (esperado {erro_esperado.__name__})")
                 falhou += 1
     print(f"\n  Resultado: {passou} passou, {falhou} falhou\n")
+    return passou, falhou
 
 
 if __name__ == "__main__":
-    testar_valores("Fibonacci Recursivo", fibo_recur, CASOS_VALOR)
-    testar_valores("Fibonacci Linear", fibo_linear, CASOS_VALOR)
+    resultados = []
+    resultados.append(testar_valores("Fibonacci Recursivo", fibo_recur, CASOS_VALOR))
+    resultados.append(testar_valores("Fibonacci Linear", fibo_linear, CASOS_VALOR))
+    resultados.append(testar_validacao("Fibonacci Recursivo", fibo_recur, CASOS_VALIDACAO))
+    resultados.append(testar_validacao("Fibonacci Linear", fibo_linear, CASOS_VALIDACAO))
 
+    total_passou = sum(p for p, f in resultados)
+    total_falhou = sum(f for p, f in resultados)
+    print(f"=== TOTAL GERAL: {total_passou} passou, {total_falhou} falhou ===")
+
+    if total_falhou > 0:
+        exit(1)
