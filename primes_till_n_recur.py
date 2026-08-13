@@ -10,17 +10,19 @@ def is_prime(n):
             
     return True
 
-def primes_till_n_linear(n):
+def primes_till_n_recur(n):
 
     if type(n) is not int:
         raise TypeError(f"Input tem que ser um inteiro, recebeu um {type(n).__name__}")
     if n <= 1:
         raise ValueError(f"n tem que ser > 1, {n} não é > 1")
 
-    primes = []
+    if n == 2:
+        return [2]
 
-    for i in range(2, n+1):
-        if is_prime(i):
-            primes.append(i)
+    previous = primes_till_n_recur(n - 1)
 
-    return primes
+    if is_prime(n):
+        return previous + [n]
+    else:
+        return previous
