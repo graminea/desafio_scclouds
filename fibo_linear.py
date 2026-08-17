@@ -1,4 +1,7 @@
 def fibo_linear(N):
+    """Retorna o N-ésimo número da sequência de Fibonacci usando iteração.
+
+    """
     
     if type(N) is not int:
         raise TypeError(f"Input tem que ser um inteiro, recebeu um {type(N).__name__}")

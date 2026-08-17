@@ -1,4 +1,9 @@
 def is_prime(n):
+    """Verifica se um número é primo.
+
+    Usa verificação até a raiz quadrada de n, pois divisores sempre vêm em pares 
+    
+    """
 
     # teoricamente nunca receberá valores menores que 1, porém valido para garantir
     if n <= 1:
@@ -11,6 +16,9 @@ def is_prime(n):
     return True
 
 def primes_till_n_recur(n):
+    """Retorna todos os números primos até n usando recursão.
+
+    """
 
     if type(n) is not int:
         raise TypeError(f"Input tem que ser um inteiro, recebeu um {type(n).__name__}")

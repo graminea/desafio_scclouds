@@ -11,13 +11,6 @@ __pycache__/
 dist/
 build/
 
-# Pytest
-.pytest_cache/
-
 # IDE
 .vscode/
-.idea/
 
-# OS
-Thumbs.db
-.DS_Store

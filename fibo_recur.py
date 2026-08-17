@@ -1,4 +1,7 @@
 def fibo_recur(N):
+    """Retorna o N-ésimo número da sequência de Fibonacci usando recursão.
+
+    """
     
     if type(N) is not int:
         raise TypeError(f"Input tem que ser um inteiro, recebeu um {type(N).__name__}")
